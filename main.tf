@@ -15,8 +15,14 @@ resource "libvirt_cloudinit_disk" "cloudinit_disk" {
   name           = "${var.guest_name}.iso"
   pool           = var.storage_pool
   user_data      = var.cloud_init_user_data
-  meta_data      = var.cloud_init_meta_data
-  network_config = var.cloud_init_network_config
+  meta_data      = templatefile("${path.module}/cloud-init/meta-data", {
+    hostname = var.guest_name
+  })
+  network_config = templatefile("${path.module}/cloud-init/network-config-${var.subnet_type}", {
+    ip_address      = var.ip_address
+    gateway_address = var.gateway_address
+    dns_server      = var.dns_server
+  })
 }
 
 resource "libvirt_volume" "primary_disk" {

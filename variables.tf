@@ -9,11 +9,6 @@ variable "guest_name" {
   default = "terraform_test"
 }
 
-variable "guest_host_name" {
-  type    = string
-  default = "terraform"
-}
-
 variable "storage_pool" {
   type    = string
   default = "filesystems"
@@ -24,14 +19,26 @@ variable "network_name" {
   default = "default"
 }
 
+variable "subnet_type" {
+  type    = string
+  default = "dhcp"
+}
+
+variable "ip_address" {
+  type = string
+  default = ""
+}
+
+variable "gateway_address" {
+  type = string
+  default = ""
+}
+
+variable "dns_server"{
+  type = string
+  default = ""
+}
+
 variable "cloud_init_user_data" {
-  type = string
-}
-
-variable "cloud_init_meta_data" {
-  type = string
-}
-
-variable "cloud_init_network_config" {
   type = string
 }
