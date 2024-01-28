@@ -29,6 +29,12 @@ resource "libvirt_volume" "primary_disk" {
   name   = "${var.guest_name}.qcow2"
   pool   = var.storage_pool
   source = var.image_url
+  size   = var.root_disk_size
+}
+
+resource "libvirt_volume" "master" {
+  name           = "master.qcow2"
+  base_volume_id = libvirt_volume.opensuse_leap.id
 }
 
 resource "libvirt_domain" "guest_domain" {
@@ -37,8 +43,8 @@ resource "libvirt_domain" "guest_domain" {
   cpu {
     mode = "host-passthrough"
   }
-  vcpu   = 2
-  memory = 4096
+  vcpu   = var.vcpu
+  memory = var.memory
 
   disk {
     volume_id = libvirt_volume.primary_disk.id

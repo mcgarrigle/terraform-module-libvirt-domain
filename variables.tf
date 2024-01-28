@@ -9,6 +9,16 @@ variable "guest_name" {
   default = "terraform_test"
 }
 
+variable "vcpu" {
+  type    = number
+  default = 1
+}
+
+variable "memory" {
+  type    = number
+  default = 2048
+}
+
 variable "storage_pool" {
   type    = string
   default = "filesystems"
@@ -42,3 +52,9 @@ variable "dns_server"{
 variable "cloud_init_user_data" {
   type = string
 }
+
+variable "root_disk_size" {
+  type    = number
+  default = 2048 * (1024*1024)
+}
+
