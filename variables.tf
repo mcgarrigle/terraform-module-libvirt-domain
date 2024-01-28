@@ -19,11 +19,6 @@ variable "memory" {
   default = 2048
 }
 
-variable "storage_pool" {
-  type    = string
-  default = "filesystems"
-}
-
 variable "network_name" {
   type    = string
   default = "default"
@@ -35,17 +30,17 @@ variable "subnet_type" {
 }
 
 variable "ip_address" {
-  type = string
+  type    = string
   default = ""
 }
 
 variable "gateway_address" {
-  type = string
+  type    = string
   default = ""
 }
 
 variable "dns_server"{
-  type = string
+  type    = string
   default = ""
 }
 
@@ -53,8 +48,16 @@ variable "cloud_init_user_data" {
   type = string
 }
 
-variable "root_disk_size" {
+variable "storage_pool" {
+  type    = string
+  default = "filesystems"
+}
+
+variable "base_volume_name" {
+  type = string
+}
+
+variable "base_volume_size" {
   type    = number
   default = 2048 * (1024*1024)
 }
-

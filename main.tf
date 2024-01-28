@@ -26,15 +26,10 @@ resource "libvirt_cloudinit_disk" "cloudinit_disk" {
 }
 
 resource "libvirt_volume" "primary_disk" {
-  name   = "${var.guest_name}.qcow2"
-  pool   = var.storage_pool
-  source = var.image_url
-  size   = var.root_disk_size
-}
-
-resource "libvirt_volume" "master" {
-  name           = "master.qcow2"
-  base_volume_id = libvirt_volume.opensuse_leap.id
+  name             = "${var.guest_name}.qcow2"
+  pool             = var.storage_pool
+  base_volume_name = var.base_volume_name
+  size             = var.base_volume_size
 }
 
 resource "libvirt_domain" "guest_domain" {
