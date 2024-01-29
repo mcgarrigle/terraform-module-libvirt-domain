@@ -1,14 +1,7 @@
-
 terraform {
   required_providers {
-    libvirt = {
-      source = "dmacvicar/libvirt"
-    }
+    libvirt = { source = "dmacvicar/libvirt" }
   }
-}
-
-provider "libvirt" {
-  uri = "qemu:///system"
 }
 
 resource "libvirt_cloudinit_disk" "cloudinit_disk" {
@@ -35,9 +28,7 @@ resource "libvirt_volume" "primary_disk" {
 resource "libvirt_domain" "guest_domain" {
   name = var.guest_name
 
-  cpu {
-    mode = "host-passthrough"
-  }
+  cpu { mode = "host-passthrough" }
   vcpu   = var.vcpu
   memory = var.memory
 
@@ -53,9 +44,7 @@ resource "libvirt_domain" "guest_domain" {
     wait_for_lease = false
   }
 
-  graphics {
-    type = "vnc"
-  }
+  graphics { type = "vnc" }
 
   console {
     type        = "pty"
