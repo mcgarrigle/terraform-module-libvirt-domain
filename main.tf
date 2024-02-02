@@ -39,7 +39,6 @@ resource "libvirt_domain" "guest_domain" {
   cloudinit = libvirt_cloudinit_disk.cloudinit_disk.id
 
   network_interface {
-    hostname       = "master"
     network_name   = var.network_name
     wait_for_lease = false
   }
