@@ -9,6 +9,11 @@ variable "guest_name" {
   default = "terraform_test"
 }
 
+variable "hostname" {
+  type    = string
+  default = "terraformtest"
+}
+
 variable "vcpu" {
   type    = number
   default = 1
@@ -17,6 +22,11 @@ variable "vcpu" {
 variable "memory" {
   type    = number
   default = 2048
+}
+
+variable "network_interface" {
+  type    = string
+  default = "eth0"
 }
 
 variable "network_name" {
